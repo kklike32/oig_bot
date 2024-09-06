@@ -1,0 +1,78 @@
+(oig) [opc@oig-workflow-instance OIG]$ python scripts/v2_chatbot.py
+Welcome to the RAG Chatbot! Type your question below (or type 'exit' to quit):
+You: How can I enable multiple accounts provisioning?
+Chatbot: To enable multiple account provisioning in the context of Oracle Identity Manager, you must perform a series of steps.
+
+First, it's important to note that by default, Oracle Identity Manager does not support multiple account provisioning. However, this functionality can be enabled by following the steps outlined in the product documentation.
+
+Here's a comprehensive guide:
+1. Setting the System Property:
+   - Set the value of the system property 'XL.AllowAPBasedMultipleAccountProvisioning' to 'TRUE'. This property controls whether multiple account provisioning is allowed based on access policies.
+   - Reference: Administering Oracle Identity Governance manual, section 'Creating and Managing System Properties'.
+
+2. Defining Account Discriminator Attributes:
+   - After enabling multiple account provisioning, you need to define account discriminator attributes. These attributes help identify and distinguish between multiple accounts of the same resource.
+   - Launch the Design Console and update the process form by adding the required account discriminator attributes.
+   - Reference: Section '17.6.1 Enabling Multiple Account Provisioning' in the product documentation.
+
+3. Account Discriminator Attributes in Access Policies:
+   - Create or modify access policies to include the account discriminator attributes defined in step 2. These attributes will help determine the uniqueness of each account being provisioned.
+   - Reference: Chapter 'Access Policy Creation' and 'Managing Access Policies' in the product documentation.
+
+4. Scheduled Task Evaluation:
+   - Provisioning of accounts right after role assignment is done through a scheduled task named 'Evaluate User Policies'. You may need to wait for this task to run automatically, or you can manually trigger it.
+   - Reference: Section '17.6.2 Creating Separate Accounts for the Same User and Same Resource on a Single Target System'.
+
+By following these steps, you can enable multiple account provisioning. The process involves configuring system properties, defining discriminator attributes, and considering the scheduled task for policy evaluation.
+
+For more detailed information and specific instructions, it is recommended to consult the Oracle Identity Manager documentation, particularly the sections referenced above. These sections provide in-depth guides and insights into each step and may include additional nuances or considerations.
+
+References:
+Document: performing-self-service-tasks-oracle-identity-governance.pdf
+URL: https://docs.oracle.com/en/middleware/idm/identity-governance/12.2.1.4/omusg/performing-self-service-tasks-oracle-identity-governance.pdf
+
+Document: performing-self-service-tasks-oracle-identity-governance.pdf
+URL: https://docs.oracle.com/en/middleware/idm/identity-governance/12.2.1.4/omusg/performing-self-service-tasks-oracle-identity-governance.pdf
+
+You: How can I create a new rule in the Add Self Service Capability Policy Rule page?
+Chatbot: To create a new rule using the Add Self Service Capability Policy Rule page, follow these steps:
+
+1. Access the Oracle Identity System Administration portal and log in with the necessary privileges.
+
+2. Navigate to the left pane and select "Self Service Capabilities." This action brings up the Self Service Capabilities page.
+
+3. Locate the "Create" button on the toolbar and click it. The Add Self Service Capability Policy Rule page will appear.
+
+4. In the "Create Rule" section, provide the following information:
+   - Name: Enter a clear and descriptive name for your rule.
+   - Description: You can add a detailed description of the rule to help administer it effectively.
+   - Owner: Assign an owner or administrator to this rule. You can search and select the appropriate owner from the available options.
+   - Status: Choose whether the rule should be enabled or disabled. Disabled rules are skipped during evaluation when a user is created.
+
+5. Set up the rule conditions using the Condition Builder:
+   - Click the condition builder icon under the "IF" part of the rule. A pop-up screen will appear, allowing you to construct the condition.
+   - Select the desired User attribute from the attribute list. You can search for specific attributes or UDFs associated with the User entity.
+   - Choose the appropriate condition from the conditions dropdown. Options include Equal, Not Equal, Contains, Does Not Contain, Begins With, and Does Not Begin With.
+   - Enter the condition value or select it from the list. For example, if you chose "Begins With," you could specify a prefix that the attribute values should match.
+
+6. Move on to the "THEN" part of the rule:
+   - Click the condition builder icon in the "THEN" section.
+   - Select either "Capability" or "Denied Attributes" based on your requirement.
+   - Unlike the "IF" section, the condition here is fixed to "Equals."
+   - Use the condition builder to choose the appropriate Capability or Denied Attribute. Remember that mandatory attributes and system-generated attributes like Status, Display Name, and User Login cannot be included in the denied attributes list.
+
+7. Once you have defined the rule conditions to your satisfaction, you can either click "Update" to save and apply the changes or "Revert" to discard them.
+
+By following these steps, you can create a new rule for self-service capabilities in the Oracle Identity Governance system.
+
+For more detailed information and visuals of the process, refer to the Oracle documentation on "Creating a Rule in Self Service Capability Policy" and "Edit Self Service Capability Policy Rule," as cited in the reference section of this conversation.
+
+References:
+Document: administering-oracle-identity-governance.pdf
+URL: https://docs.oracle.com/en/middleware/idm/identity-governance/12.2.1.4/omadm/administering-oracle-identity-governance.pdf
+
+Document: help-topics-oracle-identity-governance.pdf
+URL: https://docs.oracle.com/en/middleware/idm/identity-governance/12.2.1.4/omhlp/help-topics-oracle-identity-governance.pdf
+
+You: exit
+Goodbye!
