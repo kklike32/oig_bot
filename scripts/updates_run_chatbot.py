@@ -10,7 +10,7 @@ from langchain_huggingface import HuggingFaceEmbeddings  # Update import as per 
 from langchain_core.prompts import PromptTemplate  # Update import as per the deprecation warning
 
 # Load OCI Config and Generative AI Client
-compartment_id = "ocid1.compartment.oc1..aaaaaaaagvtl2poaovkpbtndd4fzi4ro5qx3bwcwlqzmqcgcjuzujelrjq2q"
+compartment_id = "COMP"
 CONFIG_PROFILE = "DEFAULT"
 config = oci.config.from_file('~/.oci/config', CONFIG_PROFILE)
 endpoint = "https://inference.generativeai.us-chicago-1.oci.oraclecloud.com"
@@ -29,7 +29,7 @@ def get_llm_response(input_text: str) -> str:
     chat_request.top_p = 0.75
     chat_request.top_k = 0
     chat_detail.serving_mode = oci.generative_ai_inference.models.OnDemandServingMode(
-        model_id="ocid1.generativeaimodel.oc1.us-chicago-1.amaaaaaask7dceyawk6mgunzodenakhkuwxanvt6wo3jcpf72ln52dymk4wq"
+        model_id="MODEL"
     )
     chat_detail.chat_request = chat_request
     chat_detail.compartment_id = compartment_id
