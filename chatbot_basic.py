@@ -17,7 +17,7 @@ import oci
 # Setup basic variables
 # Auth Config
 # TODO: Please update config profile name and use the compartmentId that has policies grant permissions for using Generative AI Service
-compartment_id = "ocid1.compartment.oc1..aaaaaaaagvtl2poaovkpbtndd4fzi4ro5qx3bwcwlqzmqcgcjuzujelrjq2q"
+compartment_id = "COMP"
 CONFIG_PROFILE = "DEFAULT"
 config = oci.config.from_file('~/.oci/config', CONFIG_PROFILE)
 
@@ -36,7 +36,7 @@ chat_request.top_p = 0.75
 chat_request.top_k = 0
 
 
-chat_detail.serving_mode = oci.generative_ai_inference.models.OnDemandServingMode(model_id="ocid1.generativeaimodel.oc1.us-chicago-1.amaaaaaask7dceya7ozidbukxwtun4ocm4ngco2jukoaht5mygpgr6gq2lgq")
+chat_detail.serving_mode = oci.generative_ai_inference.models.OnDemandServingMode(model_id="MODEL")
 chat_detail.chat_request = chat_request
 chat_detail.compartment_id = compartment_id
 chat_response = generative_ai_inference_client.chat(chat_detail)
